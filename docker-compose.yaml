@@ -1,0 +1,25 @@
+version: '3.7'
+services:
+  redis:
+    image: redis/redis-stack:latest
+    ports:
+      - 6379:6379
+
+  aquarium:
+    # image: ghcr.io/konstfish/aquarium_frontend:latest
+    build: ./aquarium
+    ports:
+      - 3000:3000
+    environment:
+      - REDIS_URI=redis://redis:6379/0
+
+  sprite:
+    build: /sprite
+    ports:
+      - 4001:4001
+    depends_on:
+      - redis
+    links:
+      - redis
+    environment:
+      - REDIS_URI=redis://redis:6379/0
