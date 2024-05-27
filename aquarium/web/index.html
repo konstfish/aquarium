@@ -14,23 +14,23 @@
 </head>
 
 <body>
-  <div id="info" hx-get="info.html"
+  <div id="info" hx-get="/info.html"
   hx-confirm="Hello! Welcome to Aquarium. This is a microservice application built to show off https://shoal.konst.fish Start by clicking some of the residents!"
 > /---\
 |  i  |
  \---/</div>
 
   <div class="shoal">
-    <div class="fish" id="tetra1" hx-get="http://localhost:4001/sprites/v1/tetra" hx-swap="innerHTML settle:1s" hx-trigger="load"></div>
-    <div class="fish" id="tetra2" hx-get="http://localhost:4001/sprites/v1/tetra" hx-swap="innerHTML settle:1s" hx-trigger="load"></div>
-    <div class="fish" id="tetra3" hx-get="http://localhost:4001/sprites/v1/tetra" hx-swap="innerHTML settle:1s" hx-trigger="load"></div>
+    <div class="fish" id="tetra1" hx-get="/sprites/v1/tetra" hx-swap="innerHTML settle:1s" hx-trigger="load"></div>
+    <div class="fish" id="tetra2" hx-get="/sprites/v1/tetra" hx-swap="innerHTML settle:1s" hx-trigger="load"></div>
+    <div class="fish" id="tetra3" hx-get="/sprites/v1/tetra" hx-swap="innerHTML settle:1s" hx-trigger="load"></div>
   </div>
 
-  <div class="fish" id="puffer" hx-get="http://localhost:4001/sprites/v1/pufferfish" hx-swap="innerHTML settle:1s" hx-trigger="load"></div>
+  <div class="fish" id="puffer" hx-get="/sprites/v1/pufferfish" hx-swap="innerHTML settle:1s" hx-trigger="load"></div>
 
-  <div class="fish" id="butterfly" hx-get="http://localhost:4001/sprites/v1/butterfly" hx-swap="innerHTML settle:1s" hx-trigger="load"></div>
+  <div class="fish" id="butterfly" hx-get="/sprites/v1/butterfly" hx-swap="innerHTML settle:1s" hx-trigger="load"></div>
 
-  <div class="fish" id="starfish" hx-get="http://localhost:4001/sprites/v1/starfish" hx-swap="innerHTML settle:1s" hx-trigger="load"></div>
+  <div class="fish" id="starfish" hx-get="/sprites/v1/starfish" hx-swap="innerHTML settle:1s" hx-trigger="load"></div>
 
   <div id="algae">
                (               (             )                )   (                  (               (             )                )   
@@ -39,11 +39,11 @@
      )          )  (        )   )           (      )         (     )       )          )  (        )   )           (      )         (     )
     (          (    )      (   (             )    (           )   (       (          (    )      (   (             )    (           )   (</div>
 
-  <div id="b1" class="bubble" hx-get="http://localhost:4001/sprites/v1/bubbles" hx-swap="innerHTML" hx-trigger="load"></div>
-  <div id="b2" class="bubble" hx-get="http://localhost:4001/sprites/v1/bubbles" hx-swap="innerHTML" hx-trigger="load"></div>
-  <div id="b3" class="bubble" hx-get="http://localhost:4001/sprites/v1/bubbles" hx-swap="innerHTML" hx-trigger="load"></div>
-  <div id="b4" class="bubble" hx-get="http://localhost:4001/sprites/v1/bubbles" hx-swap="innerHTML" hx-trigger="load"></div>
-  <div id="b5" class="bubble" hx-get="http://localhost:4001/sprites/v1/bubbles" hx-swap="innerHTML" hx-trigger="load"></div>
+  <div id="b1" class="bubble" hx-get="/sprites/v1/bubbles" hx-swap="innerHTML" hx-trigger="load"></div>
+  <div id="b2" class="bubble" hx-get="/sprites/v1/bubbles" hx-swap="innerHTML" hx-trigger="load"></div>
+  <div id="b3" class="bubble" hx-get="/sprites/v1/bubbles" hx-swap="innerHTML" hx-trigger="load"></div>
+  <div id="b4" class="bubble" hx-get="/sprites/v1/bubbles" hx-swap="innerHTML" hx-trigger="load"></div>
+  <div id="b5" class="bubble" hx-get="/sprites/v1/bubbles" hx-swap="innerHTML" hx-trigger="load"></div>
 </body>
 
 </html>

@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: aquarium-sprite
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: aquarium-sprite
+  template:
+    metadata:
+      labels:
+        app: aquarium-sprite
+    spec:
+      containers:
+        - name: aquarium-sprite
+          image: ghcr.io/konstfish/aquarium_sprite:latest
+          imagePullPolicy: Always
+          env:
+            - name: REDIS_URI
+              value: "redis://redis:6379/0"
+            - name: OTEL_EXPORTER_OTLP_ENDPOINT
+              value: "otel-collector-headless:4318"
+          ports:
+            - containerPort: 4001

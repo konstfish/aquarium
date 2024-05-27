@@ -1,0 +1,24 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: aquarium-ingress
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: aquarium.appdomain.konst.fish
+    http:
+      paths:
+      - path: /sprites/v1
+        pathType: Prefix
+        backend:
+          service:
+            name: sprite-service
+            port:
+              number: 8084
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: frontend
+            port:
+              number: 3000

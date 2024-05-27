@@ -1,0 +1,11 @@
+version: '3.7'
+services:
+  sprite:
+    build:
+      context: .
+      dockerfile: sprite/Dockerfile.gowork.sprites
+      args:
+        - COMPONENT=sprite
+  
+  frontend:
+    build: ./aquarium
