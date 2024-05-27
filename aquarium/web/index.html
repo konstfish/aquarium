@@ -5,39 +5,39 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>404</title>
+  <title>aquarium</title>
 
+  <link rel="stylesheet" type="text/css" href="animation.css">
   <link rel="stylesheet" type="text/css" href="main.css">
 
   <script src="https://unpkg.com/htmx.org@1.9.12"></script>
 </head>
 
 <body>
-  <div id="puffer" class="slide-it" hx-get="http://localhost:4001/sprites/v1/pufferfish" hx-swap="innerHTML transition:true" hx-trigger="load"></div>
+  <div id="info" hx-get="info.html"
+  hx-confirm="Hello! Welcome to Aquarium. This is a microservice application built to show off https://shoal.konst.fish Start by clicking some of the residents!"
+> /---\
+|  i  |
+ \---/</div>
 
-  <div id="butterfly" class="slide-it" hx-get="http://localhost:4001/sprites/v1/butterfly" hx-swap="innerHTML transition:true" hx-trigger="load"></div>
+  <div class="shoal">
+    <div class="fish" id="tetra1" hx-get="http://localhost:4001/sprites/v1/tetra" hx-swap="innerHTML settle:1s" hx-trigger="load"></div>
+    <div class="fish" id="tetra2" hx-get="http://localhost:4001/sprites/v1/tetra" hx-swap="innerHTML settle:1s" hx-trigger="load"></div>
+    <div class="fish" id="tetra3" hx-get="http://localhost:4001/sprites/v1/tetra" hx-swap="innerHTML settle:1s" hx-trigger="load"></div>
+  </div>
 
-  <!--<div class="swarm">
-    <div id="swarm1">
-      <'}}}x
-    </div>
-    <div id="swarm2">
-      <')))><
-    </div>
-    <div id="swarm3">
-      <'>>><
-    </div>
-  </div>-->
+  <div class="fish" id="puffer" hx-get="http://localhost:4001/sprites/v1/pufferfish" hx-swap="innerHTML settle:1s" hx-trigger="load"></div>
 
-  <div id="starfish" class="slide-it" hx-get="http://localhost:4001/sprites/v1/starfish" hx-swap="innerHTML transition:true" hx-trigger="load"></div>
+  <div class="fish" id="butterfly" hx-get="http://localhost:4001/sprites/v1/butterfly" hx-swap="innerHTML settle:1s" hx-trigger="load"></div>
 
-  <div id="algen">
+  <div class="fish" id="starfish" hx-get="http://localhost:4001/sprites/v1/starfish" hx-swap="innerHTML settle:1s" hx-trigger="load"></div>
+
+  <div id="algae">
                (               (             )                )   (                  (               (             )                )   
      )          )           )   )           (                (     )       )          )           )   )           (                (     )
     (          (    )      (   (             )    (           )   (       (          (    )      (   (             )    (           )   (
      )          )  (        )   )           (      )         (     )       )          )  (        )   )           (      )         (     )
-    (          (    )      (   (             )    (           )   (       (          (    )      (   (             )    (           )   (
-  </div>
+    (          (    )      (   (             )    (           )   (       (          (    )      (   (             )    (           )   (</div>
 
   <div id="b1" class="bubble" hx-get="http://localhost:4001/sprites/v1/bubbles" hx-swap="innerHTML" hx-trigger="load"></div>
   <div id="b2" class="bubble" hx-get="http://localhost:4001/sprites/v1/bubbles" hx-swap="innerHTML" hx-trigger="load"></div>

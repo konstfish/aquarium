@@ -1,47 +1,3 @@
-@keyframes blubfish {
-  0%, 100% {
-    left: 20%;
-    transform: rotateY(0deg);
-  }
-  50%{
-    left: 80%;
-    transform: rotateY(0deg);
-  }
-  55%{
-    transform: rotateY(180deg);
-  }
-  95%{
-    transform: rotateY(180deg);
-  }
-}
-
-@keyframes smolfish {
-  0%, 100% {
-    left: 90%;
-    transform: rotateY(0deg);
-  }
-  50%{
-    left: 10%;
-    transform: rotateY(0deg);
-
-  }
-  55%{
-    transform: rotateY(180deg);
-  }
-  95%{
-    transform: rotateY(180deg);
-  }
-}
-
-@keyframes bub {
-  0%, 100% {
-    top: 130%;
-  }
-  99%{
-    top: -30%;
-  }
-}
-
 html, body{
   overflow: hidden;
   white-space: pre;
@@ -54,31 +10,35 @@ span{
   color: white;
 }
 
+#info {
+  top: 5%;
+  right: 5%;
+  position: absolute;
+  padding: 0;
+  margin: 0;
+  color: #2E3440;
+  cursor: pointer;
+}
+
 #puffer{
   font-weight: 525;
-  top: 45%;
+  top: 35%;
   left: 5%;
   position: absolute;
-  -webkit-animation: blubfish 30s infinite;
-  -moz-animation:    blubfish 30s infinite;
-  -o-animation:      blubfish 30s infinite;
-  animation:         blubfish 30s infinite;
+  animation: blubfish 30s infinite;
   color: #474787;
 }
 
 #butterfly{
   font-weight: 525;
-  top: 70%;
+  top: 60%;
   left: 5%;
   position: absolute;
-  -webkit-animation: smolfish 20s infinite;
-  -moz-animation:    smolfish 20s infinite;
-  -o-animation:      smolfish 20s infinite;
-  animation:         smolfish 20s infinite;
+  animation: butterfly 20s infinite;
   color: #e74c3c;
 }
 
-#algen {
+#algae {
     position: fixed;
     left: 0;
     bottom: 0;
@@ -96,79 +56,65 @@ span{
   bottom: 0.5%;
 }
 
-.swarm{
+.shoal{
  color: #16a085;
 }
+
+/* shoal */
+#tetra1 {
+  font-weight: 525;
+  top: 20%;
+  left: 15%;
+  position: absolute;
+  animation: tetra1 6s infinite;
+}
+
+#tetra2 {
+  font-weight: 525;
+  top: 18%;
+  left: 20%;
+  position: absolute;
+  animation: tetra2 6s infinite;
+}
+
+#tetra3 {
+  font-weight: 525;
+  top: 25%;
+  left: 10%;
+  position: absolute;
+  animation: tetra3 6s infinite;
+}
+
+/* bubbles */
 
 .bubble {
   top: 20%;
   left: 5%;
   position: absolute;
-  -webkit-animation: bub 10s infinite;
-  -moz-animation:    bub 10s infinite;
-  -o-animation:      bub 10s infinite;
-  animation:         bub 10s infinite;
+  animation: bub 10s infinite;
   color: #f7f1e3;
 }
 
 #b1 {
-
+  animation: bub 10s infinite, swingv1 10s infinite ease-in-out;
 }
 
 #b2 {
   left: 10%;
-  -webkit-animation: bub 8s infinite !important;
-  -moz-animation:    bub 8s infinite !important;
-  -o-animation:      bub 8s infinite !important;
-  animation:         bub 8s infinite !important;
+  animation: bub 8s infinite, swingv2 10s infinite ease-in-out !important;
 }
 
 #b3 {
   left: 60%;
+  animation: bub 13s infinite, swingv1 10s infinite ease-in-out !important;
 }
 
 #b4{
   left: 55%;
-  -webkit-animation: bub 16s infinite !important;
-  -moz-animation:    bub 16s infinite !important;
-  -o-animation:      bub 16s infinite !important;
-  animation:         bub 16s infinite !important;
+  animation: bub 16s infinite, swingv3 10s infinite ease-in-out !important;
 }
 
 #b5{
   left: 90%;
-  -webkit-animation: bub 11s infinite !important;
-  -moz-animation:    bub 11s infinite !important;
-  -o-animation:      bub 11s infinite !important;
-  animation:         bub 11s infinite !important;
-}
-
-
-@keyframes fade-in {
-  from { opacity: 0; }
-}
-
-@keyframes fade-out {
-  to { opacity: 0; }
-}
-
-@keyframes slide-from-right {
-  from { transform: translateX(-90px); }
-}
-
-@keyframes slide-to-left {
-  to { transform: translateX(90px); }
-}
-
-.slide-it {
-  view-transition-name: slide-it;
-}
-
-::view-transition-old(slide-it) {
-  animation: 180ms cubic-bezier(0.4, 0, 1, 1) both fade-out,
-  600ms cubic-bezier(0.4, 0, 0.2, 1) both slide-to-left;
-}
-::view-transition-new(slide-it) {
-  animation: 420ms cubic-bezier(0, 0, 0.2, 1) 90ms both fade-in,
-  600ms cubic-bezier(0.4, 0, 0.2, 1) both slide-from-right;
+  animation: bub 11s infinite swingv4 10s infinite ease-in-out !important;
 }

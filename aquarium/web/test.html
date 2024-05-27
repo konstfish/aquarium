@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/htmx.org@1.9.12"></script>
+
+</head>
+<body>
+    <style>
+#fade-me-in.htmx-added {
+    opacity: 0;
+  }
+
+#fade-me-in {
+    opacity: 1;
+    transition: opacity 1s ease-out;
+  }
+
+#fade-me-out.htmx-settling {
+    opacity: 0;
+    transition: opacity 1s ease-out;
+  }
+        </style>
+        
+        <button id="fade-me-in"
+                hx-get="http://localhost:4001/sprites/v1/tetra"
+                hx-swap="innerHTML settle:1s"
+                hx-target="#fade-me-in">
+                Fade Me In
+        </button>
+</body>
+</html>
