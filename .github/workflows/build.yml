@@ -1,0 +1,36 @@
+name: Build
+
+on:
+  push:
+    branches:
+      - '*'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        component: [sprite]
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Check for changes
+        id: check-changes
+        run: |
+          if git diff --name-only ${{ github.event.before }} ${{ github.sha }} | grep -q ${{ matrix.component }}; then
+            echo "changed=true" >> $GITHUB_OUTPUT
+          else
+            echo "changed=false" >> $GITHUB_OUTPUT
+          fi
+
+      - uses: docker-practice/actions-setup-docker@master
+        if: ${{ steps.check-changes.outputs.changed == 'true' }}
+
+      - name: Build
+        if: ${{ steps.check-changes.outputs.changed == 'true' }}
+        run: |
+          docker-compose --file docker-compose.build.yml build ${{ matrix.component }}

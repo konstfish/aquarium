@@ -2,7 +2,6 @@ package controllers
 
 import (
 	"log"
-	"math/rand"
 	"os"
 	"path/filepath"
 )
@@ -39,17 +38,4 @@ func GetSprites(rootDir string) map[string][]string {
 	}
 
 	return folders
-}
-
-func GetRandomSprite(rootDir string, spriteDir []string) string {
-	return GetSprite(rootDir + "/" + spriteDir[rand.Intn(len(spriteDir))])
-}
-
-func GetSprite(spritePath string) string {
-	file, err := os.ReadFile(spritePath)
-	if err != nil {
-		log.Fatal(err)
-	}
-
-	return string(file)
 }
