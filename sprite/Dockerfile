@@ -21,6 +21,6 @@ RUN mkdir -p db
 
 COPY --from=builder /app/main .
 
-ADD sprite/sprites /sprites
+ADD sprites /sprites
 
 CMD ["./main"]
