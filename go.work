@@ -3,4 +3,5 @@ go 1.22.1
 use (
 	./common
     ./sprite
+    ./tetra
 )

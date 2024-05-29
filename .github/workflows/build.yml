@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        component: [sprite]
+        component: [sprite, tetra]
 
     steps:
       - name: Checkout
@@ -33,4 +33,4 @@ jobs:
       - name: Build
         if: ${{ steps.check-changes.outputs.changed == 'true' }}
         run: |
-          docker-compose --file docker-compose.build.yml build ${{ matrix.component }}
+          docker-compose --file docker-compose.build.yaml build ${{ matrix.component }}

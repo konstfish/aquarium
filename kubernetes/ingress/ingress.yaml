@@ -14,7 +14,14 @@ spec:
           service:
             name: sprite-service
             port:
-              number: 8084
+              number: 4001
+      - path: /tetra/v1
+        pathType: Prefix
+        backend:
+          service:
+            name: sprite-service
+            port:
+              number: 4001
       - path: /
         pathType: Prefix
         backend:

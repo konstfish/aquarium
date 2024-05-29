@@ -7,5 +7,12 @@ services:
       args:
         - COMPONENT=sprite
   
+  tetra:
+    build:
+      context: .
+      dockerfile: helper/Dockerfile.gowork
+      args:
+        - COMPONENT=tetra
+
   frontend:
     build: ./aquarium

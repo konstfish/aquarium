@@ -118,3 +118,15 @@ span{
   left: 90%;
   animation: bub 11s infinite swingv4 10s infinite ease-in-out !important;
 }
+
+
+/* text */
+
+#shoal-text.htmx-settling{
+  opacity: 1;
+}
+
+#shoal-text{
+  opacity: 0;
+  transition: 0.3s opacity;
+}

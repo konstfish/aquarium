@@ -20,11 +20,13 @@
 |  i  |
  \---/</div>
 
-  <div class="shoal">
+ <div class="shoal" hx-get="http://localhost:4002/tetra/v1/echo" hx-swap="innerHTML settle:5s" hx-target="#shoal-text" hx-disinherit="*">
     <div class="fish" id="tetra1" hx-get="http://localhost:4001/sprites/v1/tetra" hx-swap="innerHTML settle:1s" hx-trigger="load"></div>
     <div class="fish" id="tetra2" hx-get="http://localhost:4001/sprites/v1/tetra" hx-swap="innerHTML settle:1s" hx-trigger="load"></div>
     <div class="fish" id="tetra3" hx-get="http://localhost:4001/sprites/v1/tetra" hx-swap="innerHTML settle:1s" hx-trigger="load"></div>
   </div>
+
+  <div id="shoal-text"></div>
 
   <div class="fish" id="puffer" hx-get="http://localhost:4001/sprites/v1/pufferfish" hx-swap="innerHTML settle:1s" hx-trigger="load"></div>
 

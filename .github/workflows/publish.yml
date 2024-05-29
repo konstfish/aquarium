@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        component: [sprite]
+        component: [sprite, tetra]
 
     steps:
       - name: Checkout

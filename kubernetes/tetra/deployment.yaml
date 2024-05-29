@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: aquarium-tetra
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: aquarium-tetra
+  template:
+    metadata:
+      labels:
+        app: aquarium-tetra
+    spec:
+      containers:
+        - name: aquarium-tetra
+          replicas: 3
+          image: ghcr.io/konstfish/aquarium_tetra:latest
+          imagePullPolicy: Always
+          env:
+            - name: REDIS_URI
+              value: "redis://redis:6379/0"
+            - name: OTEL_EXPORTER_OTLP_ENDPOINT
+              value: "otel-collector-headless:4318"
+          ports:
+            - containerPort: 4002
