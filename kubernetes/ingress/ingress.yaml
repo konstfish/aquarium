@@ -12,16 +12,16 @@ spec:
         pathType: Prefix
         backend:
           service:
-            name: sprite-service
+            name: aquarium-sprite
             port:
               number: 4001
       - path: /tetra/v1
         pathType: Prefix
         backend:
           service:
-            name: sprite-service
+            name: aquarium-tetra
             port:
-              number: 4001
+              number: 4002
       - path: /
         pathType: Prefix
         backend:

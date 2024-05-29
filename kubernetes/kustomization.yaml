@@ -1,2 +1,5 @@
 resources:
   - ingress
+  # components
+  - sprite
+  - tetra
