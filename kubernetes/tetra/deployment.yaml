@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: aquarium-tetra
 spec:
-  replicas: 1
+  replicas: 3
   selector:
     matchLabels:
       app: aquarium-tetra
@@ -14,7 +14,6 @@ spec:
     spec:
       containers:
         - name: aquarium-tetra
-          replicas: 3
           image: ghcr.io/konstfish/aquarium_tetra:latest
           imagePullPolicy: Always
           env:

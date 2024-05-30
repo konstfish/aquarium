@@ -1,5 +1,6 @@
 resources:
   - ingress
+  - cache
   # components
   - tank
   - sprite
