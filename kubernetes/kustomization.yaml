@@ -1,5 +1,6 @@
 resources:
   - ingress
   # components
+  - tank
   - sprite
   - tetra

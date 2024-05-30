@@ -2,8 +2,14 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: aquarium-ingress
+  annotations:
+    cert-manager.io/cluster-issuer: "appdomain"
 spec:
   ingressClassName: nginx
+  tls:
+  - hosts:
+    - aquarium.appdomain.konst.fish
+    secretName: aquarium-tls
   rules:
   - host: aquarium.appdomain.konst.fish
     http:
@@ -26,6 +32,6 @@ spec:
         pathType: Prefix
         backend:
           service:
-            name: frontend
+            name: aquarium-tank
             port:
               number: 3000
