@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        component: [sprite, tetra]
+        component: [tank, sprite, tetra]
 
     steps:
       - name: Checkout
@@ -35,7 +35,10 @@ jobs:
       - name: Build and push aquarium_${{ matrix.component }}
         uses: docker/build-push-action@v2
         with:
-          context: ./${{ matrix.component }}
+          context: ./
+          file: ./${{ matrix.component }}/Dockerfile
+          build-args: |
+            COMPONENT=${{ matrix.component }}
           platforms: linux/amd64,linux/arm64
           push: true
           tags: |

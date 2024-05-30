@@ -12,18 +12,13 @@ services:
       - 4317:4317 
       - 4318:4318
 
-  aquarium:
-    # image: ghcr.io/konstfish/aquarium_frontend:latest
-    build: ./aquarium
+  tank:
+    image: ghcr.io/konstfish/aquarium_tank:latest
     ports:
       - 3000:3000
 
   sprite:
-    build:
-      context: .
-      dockerfile: sprite/Dockerfile.gowork.sprites
-      args:
-        - COMPONENT=sprite
+    image: ghcr.io/konstfish/aquarium_sprite:latest
     ports:
       - 4001:4001
     depends_on:

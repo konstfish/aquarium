@@ -1,9 +1,12 @@
 FROM nginx:latest
-COPY web/ /usr/share/nginx/html
+
+ARG COMPONENT
+
+COPY $COMPONENT/web/ /usr/share/nginx/html
 
 RUN apt update && apt install -y curl
 
 RUN rm -v /etc/nginx/nginx.conf
-ADD nginx.conf /etc/nginx/
+ADD $COMPONENT/nginx.conf /etc/nginx/
 
 CMD ["nginx", "-g", "daemon off;"]

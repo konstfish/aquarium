@@ -3,9 +3,10 @@ services:
   sprite:
     build:
       context: .
-      dockerfile: sprite/Dockerfile.gowork.sprites
+      dockerfile: sprite/Dockerfile
       args:
         - COMPONENT=sprite
+    image: ghcr.io/konstfish/aquarium_sprite:latest
   
   tetra:
     build:
@@ -13,6 +14,12 @@ services:
       dockerfile: helper/Dockerfile.gowork
       args:
         - COMPONENT=tetra
+    image: ghcr.io/konstfish/aquarium_tetra:latest
 
-  frontend:
-    build: ./aquarium
+  tank:
+    build:
+      context: .
+      dockerfile: tank/Dockerfile
+      args:
+        - COMPONENT=tank
+    image: ghcr.io/konstfish/aquarium_tank:latest
