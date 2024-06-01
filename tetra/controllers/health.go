@@ -1,19 +1,18 @@
 package controllers
 
 import (
-	"fmt"
 	"net/http"
 	"os"
 
 	"github.com/gin-gonic/gin"
 )
 
-func Echo(c *gin.Context) {
-	hostname, err := os.Hostname()
+func Healthz(c *gin.Context) {
+	_, err := os.Hostname()
 	if err != nil {
 		c.String(http.StatusInternalServerError, "ERR")
 		return
 	}
 
-	c.String(http.StatusOK, fmt.Sprintf("Hello! I'm %s", hostname))
+	c.String(http.StatusOK, "OK")
 }

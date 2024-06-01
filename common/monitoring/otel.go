@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"slices"
 	"strconv"
 	"strings"
 
@@ -102,12 +103,14 @@ func ParseTraceparentHeader(traceparentHeader string) (trace.SpanContext, error)
 
 // middleware
 func FilterTraces(req *http.Request) bool {
-	/*var notToLogEndpoints = []string{"/health", "/metrics"}
-
-	return slices.Index(notToLogEndpoints, req.URL.Path) == -1*/
-
 	// check if request method is options
 	if req.Method == "OPTIONS" {
+		return false
+	}
+
+	// check if request path is noisy
+	var notToLogEndpoints = []string{"/healthz", "/metrics"}
+	if slices.Index(notToLogEndpoints, req.URL.Path) != -1 {
 		return false
 	}
 
