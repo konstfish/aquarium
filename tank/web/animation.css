@@ -1,10 +1,8 @@
-@keyframes blubfish {
+@keyframes puffer {
     0%, 100% {
-        left: 20%;
         transform: rotateY(0deg);
     }
     50%{
-        left: 80%;
         transform: rotateY(0deg);
     }
     55%{
@@ -15,13 +13,20 @@
     }
 }
 
+@keyframes puffer-move{
+    0%, 100% {
+        left: 10%;
+    }
+    50%{
+        left: 70%;
+    }
+}
+
 @keyframes butterfly {
     0%, 100% {
-        left: 90%;
         transform: rotateY(0deg);
     }
     50%{
-        left: 10%;
         transform: rotateY(0deg);
     }
     55%{
@@ -29,6 +34,15 @@
     }
     95%{
         transform: rotateY(180deg);
+    }
+}
+
+@keyframes butterfly-move {
+    0%, 100% {
+        left: 90%;
+    }
+    50%{
+        left: 10%;
     }
 }
 
@@ -54,7 +68,7 @@
 
 /* bubbles */
 
-@keyframes bub {
+@keyframes bubble {
 0%, 100% {
     top: 120%;
 }

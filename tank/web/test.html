@@ -8,27 +8,10 @@
 
 </head>
 <body>
-    <style>
-#fade-me-in.htmx-added {
-    opacity: 0;
-  }
-
-#fade-me-in {
-    opacity: 1;
-    transition: opacity 1s ease-out;
-  }
-
-#fade-me-out.htmx-settling {
-    opacity: 0;
-    transition: opacity 1s ease-out;
-  }
-        </style>
-        
-        <button id="fade-me-in"
-                hx-get="http://localhost:4001/sprites/v1/tetra"
-                hx-swap="innerHTML settle:1s"
-                hx-target="#fade-me-in">
-                Fade Me In
-        </button>
+  <span>
+    <span class="fish tetra" id="tetra1" hx-get="http://localhost:4001/sprites/v1/tetra" hx-swap="innerHTML settle:1s" hx-trigger="load"></span>
+    <span class="fish tetra" id="tetra2" hx-get="http://localhost:4001/sprites/v1/tetra" hx-swap="innerHTML settle:1s" hx-trigger="load"></span>
+    <span class="fish tetra" id="tetra3" hx-get="http://localhost:4001/sprites/v1/tetra" hx-swap="innerHTML settle:1s" hx-trigger="load"></span>
+  </span>
 </body>
 </html>

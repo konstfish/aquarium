@@ -14,38 +14,59 @@
 </head>
 
 <body>
-  <div id="info" hx-get="info.html"
-  hx-confirm="Hello! Welcome to Aquarium. This is a microservice application built to show off https://shoal.konst.fish Start by clicking some of the residents!"
+
+  <div class="info">
+    <div class="fish" id="info-button" hx-get="info.html" hx-swap="innerHTML settle:5s" hx-target="#info-text"
 > /---\
 |  i  |
  \---/</div>
-
- <div class="shoal" hx-get="http://localhost:4002/tetra/v1/echo" hx-swap="innerHTML settle:5s" hx-target="#shoal-text" hx-disinherit="*">
-    <div class="fish" id="tetra1" hx-get="http://localhost:4001/sprites/v1/tetra" hx-swap="innerHTML settle:1s" hx-trigger="load"></div>
-    <div class="fish" id="tetra2" hx-get="http://localhost:4001/sprites/v1/tetra" hx-swap="innerHTML settle:1s" hx-trigger="load"></div>
-    <div class="fish" id="tetra3" hx-get="http://localhost:4001/sprites/v1/tetra" hx-swap="innerHTML settle:1s" hx-trigger="load"></div>
+    
+     <div id="info-text" class="text">TextFiller</div>
   </div>
 
-  <div id="shoal-text"></div>
+  <div class="shoal">
+    <div id="shoal" hx-get="http://localhost:4002/tetra/v1/echo" hx-swap="innerHTML settle:5s" hx-target="#shoal-text" hx-disinherit="*"
+><div class="fish tetra" id="tetra1" hx-get="http://localhost:4001/sprites/v1/tetra" hx-swap="innerHTML settle:1s" hx-trigger="load"></div>
+<div class="fish tetra" id="tetra2" hx-get="http://localhost:4001/sprites/v1/tetra" hx-swap="innerHTML settle:1s" hx-trigger="load"></div>
+<div class="fish tetra" id="tetra3" hx-get="http://localhost:4001/sprites/v1/tetra" hx-swap="innerHTML settle:1s" hx-trigger="load"></div></div>
+  
+    <div id="shoal-text" class="text">TextFiller TextFiller TextFiller</div>
+  </div>
 
-  <div class="fish" id="puffer" hx-get="http://localhost:4001/sprites/v1/pufferfish" hx-swap="innerHTML settle:1s" hx-trigger="load"></div>
 
-  <div class="fish" id="butterfly" hx-get="http://localhost:4001/sprites/v1/butterfly" hx-swap="innerHTML settle:1s" hx-trigger="load"></div>
+  <div class="puffer" hx-get="http://localhost:4003/puffer/v1/load" hx-swap="innerHTML settle:5s" hx-target="#puffer-text" hx-disinherit="*">
+    <div class="fish" id="puffer" hx-get="http://localhost:4001/sprites/v1/pufferfish" hx-swap="innerHTML settle:1s" hx-trigger="load"></div>
+    <div id="puffer-text" class="text">TextFiller</div>
+  </div>
 
-  <div class="fish" id="starfish" hx-get="http://localhost:4001/sprites/v1/starfish" hx-swap="innerHTML settle:1s" hx-trigger="load"></div>
+  <div class="butterfly" hx-get="http://localhost:4004/butterfly/v1/error" hx-swap="innerHTML settle:5s" hx-target="#butterfly-text" hx-disinherit="*">
+    <div class="fish" id="butterfly" hx-get="http://localhost:4001/sprites/v1/butterfly" hx-swap="innerHTML settle:1s" hx-trigger="load"></div>
+    <div id="butterfly-text" class="text">TextFiller</div>
+  </div>
 
-  <div id="algae">
+  <div id="starfish-text" class="text">TextFiller</div>
+  <div class="fish" id="starfish" hx-get="http://localhost:4005/starfish/v1/stats" hx-swap="innerHTML settle:5s" hx-target="#starfish-text" hx-disinherit="*"></div>
+
+  <div id="starfish-loader" hx-get="http://localhost:4001/sprites/v1/starfish" hx-swap="innerHTML settle:1s" hx-trigger="load" hx-target="#starfish"></div>
+
+  <div class="fish" id="algae">
                (               (             )                )   (                  (               (             )                )   
      )          )           )   )           (                (     )       )          )           )   )           (                (     )
     (          (    )      (   (             )    (           )   (       (          (    )      (   (             )    (           )   (
      )          )  (        )   )           (      )         (     )       )          )  (        )   )           (      )         (     )
     (          (    )      (   (             )    (           )   (       (          (    )      (   (             )    (           )   (</div>
 
-  <div id="b1" class="bubble" hx-get="http://localhost:4001/sprites/v1/bubbles" hx-swap="innerHTML" hx-trigger="load"></div>
-  <div id="b2" class="bubble" hx-get="http://localhost:4001/sprites/v1/bubbles" hx-swap="innerHTML" hx-trigger="load"></div>
-  <div id="b3" class="bubble" hx-get="http://localhost:4001/sprites/v1/bubbles" hx-swap="innerHTML" hx-trigger="load"></div>
-  <div id="b4" class="bubble" hx-get="http://localhost:4001/sprites/v1/bubbles" hx-swap="innerHTML" hx-trigger="load"></div>
-  <div id="b5" class="bubble" hx-get="http://localhost:4001/sprites/v1/bubbles" hx-swap="innerHTML" hx-trigger="load"></div>
+  <div id="b1" class="fish bubble">0
+&nbsp;o</div>
+  <div id="b2" class="fish bubble">o
+&nbsp;0</div>
+  <div id="b3" class="fish bubble">o
+0</div>
+  <div id="b4" class="fish bubble">&nbsp;0
+o
+</div>
+  <div id="b5" class="fish bubble">&nbsp;o
+0
+  </div>
 </body>
-
 </html>

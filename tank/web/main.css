@@ -1,126 +1,86 @@
 html, body{
   overflow: hidden;
-  white-space: pre;
   font-family: "Consolas", monospace;
   background: #34ace0 url('funky-lines.png') repeat;
   font-family: Consolas,monaco,monospace; 
+  user-select: none;
+  height: 100vh;
+  width: 100vw;
+  margin: 0;
+  padding: 0;
 }
 
-span{
+.fish {
+  white-space: pre;
+  font-weight: 525;
+}
+
+.fish span{
   color: white;
 }
 
-#info {
-  top: 5%;
-  right: 5%;
+.text {
+  padding: 8px;
+  background-color: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(2px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  z-index: 100;
+
+  text-wrap: wrap;
+  word-wrap: break-word;
+}
+
+/* info */
+
+.info{
+  top: 2%;
+  left: 3%;
   position: absolute;
-  padding: 0;
-  margin: 0;
+  display: flex;
+  flex-direction: row;
+  gap: 12px;
+  width: calc(100% - 5%);
+}
+
+#info-button {
+  width: auto;
   color: #2E3440;
   cursor: pointer;
 }
 
-#puffer{
-  font-weight: 525;
-  top: 35%;
-  left: 5%;
-  position: absolute;
-  animation: blubfish 30s infinite;
-  color: #474787;
+#info-text {
+  width: auto;
+  text-wrap: wrap;
 }
 
-#butterfly{
-  font-weight: 525;
-  top: 60%;
-  left: 5%;
-  position: absolute;
-  animation: butterfly 20s infinite;
-  color: #e74c3c;
+#info-text.htmx-settling{
+  opacity: 1;
 }
 
-#algae {
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    color: #318c74;
-    text-align: center;
-    margin-bottom: 0px;;
-    padding-bottom: 0px;
-}
-
-#starfish{
-  color: #f39c12;
-  position: fixed;
-  left: 75%;
-  bottom: 0.5%;
-}
-
-.shoal{
- color: #16a085;
+#info-text{
+  opacity: 0;
+  transition: 0.3s opacity;
 }
 
 /* shoal */
-#tetra1 {
-  font-weight: 525;
-  top: 20%;
-  left: 15%;
-  position: absolute;
-  animation: tetra1 6s infinite;
-}
-
-#tetra2 {
-  font-weight: 525;
+.shoal {
   top: 18%;
-  left: 20%;
+  left: 14%;
   position: absolute;
-  animation: tetra2 6s infinite;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 12px;
 }
 
-#tetra3 {
-  font-weight: 525;
-  top: 25%;
-  left: 10%;
-  position: absolute;
-  animation: tetra3 6s infinite;
+#shoal{
+  color: #16a085;
+  cursor: pointer;
+
+  display: inline-block;
+  width: 125px;
 }
-
-/* bubbles */
-
-.bubble {
-  top: 20%;
-  left: 5%;
-  position: absolute;
-  animation: bub 10s infinite;
-  color: #f7f1e3;
-}
-
-#b1 {
-  animation: bub 10s infinite, swingv1 10s infinite ease-in-out;
-}
-
-#b2 {
-  left: 10%;
-  animation: bub 8s infinite, swingv2 10s infinite ease-in-out !important;
-}
-
-#b3 {
-  left: 60%;
-  animation: bub 13s infinite, swingv1 10s infinite ease-in-out !important;
-}
-
-#b4{
-  left: 55%;
-  animation: bub 16s infinite, swingv3 10s infinite ease-in-out !important;
-}
-
-#b5{
-  left: 90%;
-  animation: bub 11s infinite swingv4 10s infinite ease-in-out !important;
-}
-
-
-/* text */
 
 #shoal-text.htmx-settling{
   opacity: 1;
@@ -129,4 +89,174 @@ span{
 #shoal-text{
   opacity: 0;
   transition: 0.3s opacity;
+  text-wrap: wrap;
+  margin-right: 12px;
+}
+
+.tetra {
+  display: inline-block;
+}
+
+#tetra1 {
+  animation: tetra1 6s infinite;
+}
+
+#tetra2 {
+  animation: tetra2 7s infinite;
+}
+
+#tetra3 {
+  animation: tetra3 5s infinite;
+}
+
+/* puffer fish*/
+.puffer{
+  top: 35%;
+  left: 10%;
+  position: absolute;
+  animation: puffer-move 30s infinite ease-in-out;
+
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+#puffer{
+  width: 150.5px;
+  animation: puffer 30s infinite ease-in-out;
+  color: #474787;
+  cursor: pointer;
+}
+
+#puffer-text{
+  margin-top: 8px;
+  width: auto;
+}
+
+#puffer-text.htmx-settling{
+  opacity: 1;
+}
+
+#puffer-text{
+  opacity: 0;
+  transition: 0.3s opacity;
+}
+
+/* butterfly fish*/
+.butterfly{
+  top: 62%;
+  left: 5%;
+  position: absolute;
+  animation: butterfly-move 20s infinite ease-in-out;
+
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+#butterfly{
+  animation: butterfly 20s infinite ease-in-out;
+  color: #e74c3c;
+  cursor: pointer;
+}
+
+#butterfly-text{
+  margin-top: 8px;
+  width: auto;
+}
+
+#butterfly-text.htmx-settling{
+  opacity: 1;
+}
+
+#butterfly-text{
+  opacity: 0;
+  transition: 0.3s opacity;
+}
+
+/* starfish */
+
+#starfish{
+  color: #f39c12;
+  position: fixed;
+  right: 5%;
+  bottom: 0.5%;
+  cursor: pointer;
+}
+
+#starfish-text{
+  position: fixed;
+  right: 5%;
+  bottom: 0%;
+  margin-bottom: 100px;
+  width: 225px;
+}
+
+#starfish-text.htmx-settling{
+  opacity: 1;
+}
+
+#starfish-text{
+  opacity: 0;
+  transition: 0.3s opacity;
+}
+
+
+/* decoration */
+
+#coral{
+  color: #B64954;
+  position: fixed;
+  left: 4%;
+  bottom: 0.5%;
+}
+
+
+#algae {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  color: #318c74;
+  text-align: center;
+  margin-bottom: 0px;
+  padding-bottom: 0px;
+  pointer-events: none;
+}
+
+/* bubbles */
+.bubble {
+  top: 20%;
+  left: 5%;
+  position: absolute;
+  animation: bubble 10s infinite;
+  color: #f7f1e3;
+}
+
+#b1 {
+  animation: bubble 10s infinite, swingv1 10s infinite ease-in-out;
+}
+
+#b2 {
+  left: 10%;
+  animation: bubble 8s infinite, swingv2 10s infinite ease-in-out !important;
+}
+
+#b3 {
+  left: 60%;
+  animation: bubble 13s infinite, swingv1 10s infinite ease-in-out !important;
+}
+
+#b4{
+  left: 55%;
+  animation: bubble 16s infinite, swingv3 10s infinite ease-in-out !important;
+}
+
+#b5{
+  left: 90%;
+  animation: bubble 11s infinite swingv4 10s infinite ease-in-out !important;
 }
