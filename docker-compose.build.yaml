@@ -6,7 +6,15 @@ services:
       dockerfile: butterfly/Dockerfile
       args:
         - COMPONENT=butterfly
-    image: ghcr.io/konstfish/aquarium_sprite:latest
+    image: ghcr.io/konstfish/aquarium_butterfly:latest
+
+  puffer:
+    build:
+      context: .
+      dockerfile: puffer/Dockerfile
+      args:
+        - COMPONENT=puffer
+    image: ghcr.io/konstfish/aquarium_puffer:latest
 
   sprite:
     build:

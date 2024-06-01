@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        component: [tank, butterfly, sprite, tetra]
+        component: [tank, butterfly, puffer, sprite, tetra]
 
     steps:
       - name: Checkout

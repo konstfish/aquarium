@@ -12,7 +12,6 @@ var Router *gin.Engine
 
 func CreateUrlMappings() {
 	Router = gin.Default()
-	Router.Use(otelgin.Middleware(monitoring.ServiceName, otelgin.WithFilter(monitoring.FilterTraces)))
 
 	// opentelemetry
 	Router.Use(otelgin.Middleware(monitoring.ServiceName, otelgin.WithFilter(monitoring.FilterTraces)))

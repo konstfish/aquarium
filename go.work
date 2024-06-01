@@ -5,4 +5,5 @@ use (
     ./sprite
     ./tetra
     ./butterfly
+    ./puffer
 )

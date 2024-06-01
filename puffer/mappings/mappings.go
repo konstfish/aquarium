@@ -3,7 +3,7 @@ package mappings
 import (
 	"github.com/gin-gonic/gin"
 	"github.com/konstfish/aquarium/common/monitoring"
-	"github.com/konstfish/aquarium/tetra/controllers"
+	"github.com/konstfish/aquarium/puffer/controllers"
 	"github.com/penglongli/gin-metrics/ginmetrics"
 	"go.opentelemetry.io/contrib/instrumentation/github.com/gin-gonic/gin/otelgin"
 )
@@ -27,8 +27,8 @@ func CreateUrlMappings() {
 	// health
 	Router.GET("/healthz", controllers.Healthz)
 
-	v1 := Router.Group("/tetra/v1")
+	v1 := Router.Group("/puffer/v1")
 	{
-		v1.GET("/echo", controllers.Echo)
+		v1.POST("/load", controllers.Load)
 	}
 }

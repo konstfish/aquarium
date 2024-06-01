@@ -35,7 +35,7 @@
   </div>
 
 
-  <div class="puffer" hx-get="http://localhost:4003/puffer/v1/load" hx-swap="innerHTML settle:5s" hx-target="#puffer-text" hx-disinherit="*">
+  <div class="puffer" hx-post="http://localhost:4003/puffer/v1/load" hx-ext="response-targets" hx-swap="innerHTML settle:5s" hx-target="#puffer-text" hx-target-error="#puffer-text" hx-disinherit="*">
     <div class="fish" id="puffer" hx-get="http://localhost:4001/sprites/v1/pufferfish" hx-swap="innerHTML settle:1s" hx-trigger="load"></div>
     <div id="puffer-text" class="text">TextFiller</div>
   </div>

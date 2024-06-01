@@ -28,3 +28,37 @@ services:
     environment:
       - REDIS_URI=redis://redis:6379/0
       - OTEL_EXPORTER_OTLP_ENDPOINT=lgtm:4318
+
+  tetra:
+    image: ghcr.io/konstfish/aquarium_tetra:latest
+    ports:
+      - 4002:4002
+    environment:
+      - OTEL_EXPORTER_OTLP_ENDPOINT=lgtm:4318
+
+  puffer:
+    image: ghcr.io/konstfish/aquarium_puffer:latest
+    ports:
+      - 4003:4003
+    depends_on:
+      - redis
+    links:
+      - redis
+      - butterfly
+      - tetra
+    environment:
+      - REDIS_URI=redis://redis:6379/0
+      - TETRA_URL=http://tetra:4002/tetra/v1/echo
+      - BUTTERFLY_URL=http://butterfly:4004/butterfly/v1/error
+      - OTEL_EXPORTER_OTLP_ENDPOINT=lgtm:4318
+
+  butterfly:
+    image: ghcr.io/konstfish/aquarium_butterfly:latest
+    ports:
+      - 4004:4004
+    depends_on:
+      - redis
+    links:
+      - redis
+    environment:
+      - OTEL_EXPORTER_OTLP_ENDPOINT=lgtm:4318
