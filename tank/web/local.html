@@ -11,6 +11,7 @@
   <link rel="stylesheet" type="text/css" href="main.css">
 
   <script src="https://unpkg.com/htmx.org@1.9.12"></script>
+  <script src="https://unpkg.com/htmx.org@1.9.12/dist/ext/response-targets.js"></script>
 </head>
 
 <body>
@@ -39,7 +40,7 @@
     <div id="puffer-text" class="text">TextFiller</div>
   </div>
 
-  <div class="butterfly" hx-get="http://localhost:4004/butterfly/v1/error" hx-swap="innerHTML settle:5s" hx-target="#butterfly-text" hx-disinherit="*">
+  <div class="butterfly" hx-post="http://localhost:4004/butterfly/v1/error" hx-ext="response-targets" hx-swap="innerHTML settle:5s" hx-target="#butterfly-text" hx-target-error="#butterfly-text" hx-disinherit="*">
     <div class="fish" id="butterfly" hx-get="http://localhost:4001/sprites/v1/butterfly" hx-swap="innerHTML settle:1s" hx-trigger="load"></div>
     <div id="butterfly-text" class="text">TextFiller</div>
   </div>

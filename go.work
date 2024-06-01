@@ -4,4 +4,5 @@ use (
     ./common
     ./sprite
     ./tetra
+    ./butterfly
 )

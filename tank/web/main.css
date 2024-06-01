@@ -142,6 +142,8 @@ html, body{
 #puffer-text{
   opacity: 0;
   transition: 0.3s opacity;
+  width: 200px;
+  text-align: center;
 }
 
 /* butterfly fish*/
@@ -166,7 +168,8 @@ html, body{
 
 #butterfly-text{
   margin-top: 8px;
-  width: auto;
+  width: 200px;
+  text-align: center;
 }
 
 #butterfly-text.htmx-settling{
