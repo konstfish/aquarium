@@ -34,6 +34,7 @@ services:
     ports:
       - 4002:4002
     environment:
+      - REDIS_URI=redis://redis:6379/0
       - OTEL_EXPORTER_OTLP_ENDPOINT=lgtm:4318
 
   puffer:
@@ -61,4 +62,17 @@ services:
     links:
       - redis
     environment:
+      - REDIS_URI=redis://redis:6379/0
+      - OTEL_EXPORTER_OTLP_ENDPOINT=lgtm:4318
+
+  starfish:
+    image: ghcr.io/konstfish/aquarium_starfish:latest
+    ports:
+      - 4005:4005
+    depends_on:
+      - redis
+    links:
+      - redis
+    environment:
+      - REDIS_URI=redis://redis:6379/0
       - OTEL_EXPORTER_OTLP_ENDPOINT=lgtm:4318

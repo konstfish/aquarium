@@ -46,7 +46,7 @@
   </div>
 
   <div id="starfish-text" class="text">TextFiller</div>
-  <div class="fish" id="starfish" hx-get="http://localhost:4005/starfish/v1/stats" hx-swap="innerHTML settle:5s" hx-target="#starfish-text" hx-disinherit="*"></div>
+  <div class="fish" id="starfish" hx-get="starfish.html" hx-swap="innerHTML settle:5s" hx-target="#starfish-text" hx-disinherit="*"></div>
 
   <div id="starfish-loader" hx-get="http://localhost:4001/sprites/v1/starfish" hx-swap="innerHTML settle:1s" hx-trigger="load" hx-target="#starfish"></div>
 

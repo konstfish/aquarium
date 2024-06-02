@@ -4,7 +4,6 @@ import (
 	"context"
 	"encoding/json"
 	"log"
-	"time"
 
 	"github.com/konstfish/aquarium/common/config"
 	"github.com/konstfish/aquarium/common/monitoring"
@@ -12,7 +11,6 @@ import (
 	"github.com/redis/go-redis/v9"
 	"go.opentelemetry.io/otel/attribute"
 	"go.opentelemetry.io/otel/trace"
-	"golang.org/x/time/rate"
 )
 
 var Redis *RedisClient
@@ -70,53 +68,44 @@ func ConnectRedis() *RedisClient {
 func (r *RedisClient) ListenForNewItems(queueName string, handler func(ctx context.Context, msg string)) {
 	log.Println("Listening for new items in queue", queueName)
 
-	limiter := rate.NewLimiter(rate.Every(time.Minute/100), 100) // 50 requests per minute
-
 	for {
-		if limiter.Allow() {
-			var ctx context.Context
-			var span trace.Span
+		var ctx context.Context
+		var span trace.Span
 
-			ctx = context.Background()
+		ctx = context.Background()
 
-			// pop item from queue
-			result, err := r.Client.BLPop(ctx, 0, queueName).Result()
-			if err != nil {
-				log.Println(err)
-			}
+		// pop item from queue
+		result, err := r.Client.BLPop(ctx, 0, queueName).Result()
+		if err != nil {
+			log.Println(err)
+		}
 
-			// deserialize queue item
-			var queueItem RedisQueueItem
-			err = queueItem.Deserialize(result[1])
-			if err != nil {
-				log.Println(err)
-			}
+		// deserialize queue item
+		var queueItem RedisQueueItem
+		err = queueItem.Deserialize(result[1])
+		if err != nil {
+			log.Println(err)
+		}
 
-			log.Println(queueItem)
+		// create span
+		sc, err := monitoring.ParseTraceparentHeader(queueItem.TraceParent)
+		if err == nil {
+			ctx, span = monitoring.Tracer.Start(
+				trace.ContextWithRemoteSpanContext(ctx, sc),
+				(queueName + " receive"),
+				trace.WithSpanKind(trace.SpanKindConsumer),
+				trace.WithAttributes(
+					attribute.String("messaging.system", "redis"),
+					attribute.String("messaging.operation", "receive"),
+					attribute.String("messaging.destination.name", queueName),
+				),
+			)
+		}
 
-			// create span
-			sc, err := monitoring.ParseTraceparentHeader(queueItem.TraceParent)
-			if err == nil {
-				ctx, span = monitoring.Tracer.Start(
-					trace.ContextWithRemoteSpanContext(ctx, sc),
-					(queueName + " receive"),
-					trace.WithSpanKind(trace.SpanKindConsumer),
-					trace.WithAttributes(
-						attribute.String("messaging.system", "redis"),
-						attribute.String("messaging.operation", "receive"),
-						attribute.String("messaging.destination.name", queueName),
-					),
-				)
-			}
+		handler(ctx, queueItem.Data)
 
-			handler(ctx, queueItem.Data)
-
-			if span != nil {
-				span.End()
-			}
-
-		} else {
-			time.Sleep(time.Second * 2)
+		if span != nil {
+			span.End()
 		}
 	}
 }
@@ -125,8 +114,6 @@ func (r *RedisClient) PushToQueue(ctx context.Context, queueName string, value s
 	log.Printf("Pushing %s to queue %s", value, queueName)
 
 	var traceparent = monitoring.EmptyTraceparentHeader()
-
-	log.Println(monitoring.Tracer)
 
 	if monitoring.Tracer != nil {
 		var span trace.Span

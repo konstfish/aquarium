@@ -5,9 +5,14 @@ import (
 	"net/http"
 
 	"github.com/gin-gonic/gin"
+	"github.com/konstfish/aquarium/common/db"
 )
 
 func Error(c *gin.Context) {
+	ctx := c.Request.Context()
+
+	// send event to starfish
+	db.Redis.PushToQueue(ctx, "starfish", "butterfly")
 
 	num := rand.Float64()
 
