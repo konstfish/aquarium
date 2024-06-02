@@ -28,6 +28,20 @@ spec:
             name: aquarium-tetra
             port:
               number: 4002
+      - path: /puffer/v1
+        pathType: Prefix
+        backend:
+          service:
+            name: aquarium-puffer
+            port:
+              number: 4003
+      - path: /butterfly/v1
+        pathType: Prefix
+        backend:
+          service:
+            name: aquarium-butterfly
+            port:
+              number: 4004
       - path: /
         pathType: Prefix
         backend:

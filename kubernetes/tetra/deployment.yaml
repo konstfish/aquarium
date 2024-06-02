@@ -23,3 +23,18 @@ spec:
               value: "otel-collector-headless:4318"
           ports:
             - containerPort: 4002
+          resources:
+            limits:
+              cpu: 100m
+              memory: 128Mi
+            requests:
+              cpu: 50m
+              memory: 64Mi
+          livenessProbe:
+            httpGet:
+              path: /healthz
+              port: 4002
+            initialDelaySeconds: 3
+            periodSeconds: 10
+            timeoutSeconds: 5
+            failureThreshold: 3

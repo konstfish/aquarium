@@ -1,0 +1,13 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: aquarium-starfish
+  labels:
+    app: aquarium-starfish
+spec:
+  selector:
+    matchLabels:
+      app: aquarium-starfish
+  endpoints:
+  - port: http
+    interval: 30s

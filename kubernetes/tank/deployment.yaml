@@ -17,4 +17,11 @@ spec:
           image: ghcr.io/konstfish/aquarium_tank:latest
           imagePullPolicy: Always
           ports:
-            - containerPort: 4001
+            - containerPort: 3000
+          resources:
+            limits:
+              cpu: 100m
+              memory: 128Mi
+            requests:
+              cpu: 50m
+              memory: 64Mi
