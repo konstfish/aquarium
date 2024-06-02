@@ -2,6 +2,8 @@ apiVersion: v1
 kind: Service
 metadata:
   name: aquarium-puffer
+  labels:
+    app: aquarium-puffer
 spec:
   selector:
     app: aquarium-puffer

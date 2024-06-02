@@ -2,6 +2,8 @@ apiVersion: v1
 kind: Service
 metadata:
   name: aquarium-starfish
+  labels:
+    app: aquarium-starfish
 spec:
   selector:
     app: aquarium-starfish
