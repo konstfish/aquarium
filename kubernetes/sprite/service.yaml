@@ -9,6 +9,6 @@ spec:
     app: aquarium-sprite
   ports:
     - protocol: TCP
-      name: backend
+      name: http
       port: 4001
       targetPort: 4001

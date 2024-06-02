@@ -9,6 +9,6 @@ spec:
     app: aquarium-starfish
   ports:
     - protocol: TCP
-      name: backend
+      name: http
       port: 4005
       targetPort: 4005

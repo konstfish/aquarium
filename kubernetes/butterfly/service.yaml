@@ -9,6 +9,6 @@ spec:
     app: aquarium-butterfly
   ports:
     - protocol: TCP
-      name: backend
+      name: http
       port: 4004
       targetPort: 4004
