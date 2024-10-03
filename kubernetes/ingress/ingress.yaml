@@ -2,16 +2,10 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: aquarium-ingress
-  annotations:
-    cert-manager.io/cluster-issuer: "appdomain"
 spec:
   ingressClassName: nginx
-  tls:
-  - hosts:
-    - aquarium.appdomain.konst.fish
-    secretName: aquarium-tls
   rules:
-  - host: aquarium.appdomain.konst.fish
+  - host: aquarium.app.konst.fish
     http:
       paths:
       - path: /sprites/v1
