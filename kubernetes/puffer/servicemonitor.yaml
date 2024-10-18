@@ -1,13 +1,13 @@
 apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
-  name: aquarium-puffer
+  name: puffer
   labels:
-    app: aquarium-puffer
+    app: puffer
 spec:
   selector:
     matchLabels:
-      app: aquarium-puffer
+      app: puffer
   endpoints:
   - port: http
     interval: 30s

@@ -1,20 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: aquarium-sprite
+  name: sprite
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: aquarium-sprite
+      app: sprite
   template:
     metadata:
       labels:
-        app: aquarium-sprite
+        app: sprite
         logging: enabled
     spec:
       containers:
-        - name: aquarium-sprite
+        - name: sprite
           image: ghcr.io/konstfish/aquarium_sprite:latest
           imagePullPolicy: Always
           env:

@@ -1,13 +1,13 @@
 apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
-  name: aquarium-sprite
+  name: sprite
   labels:
-    app: aquarium-sprite
+    app: sprite
 spec:
   selector:
     matchLabels:
-      app: aquarium-sprite
+      app: sprite
   endpoints:
   - port: http
     interval: 30s

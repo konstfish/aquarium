@@ -1,12 +1,12 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: aquarium-tetra
+  name: tetra
   labels:
-    app: aquarium-tetra
+    app: tetra
 spec:
   selector:
-    app: aquarium-tetra
+    app: tetra
   ports:
     - protocol: TCP
       name: http

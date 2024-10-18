@@ -1,7 +1,7 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: aquarium-ingress
+  name: ingress
 spec:
   ingressClassName: nginx
   rules:
@@ -12,34 +12,34 @@ spec:
         pathType: Prefix
         backend:
           service:
-            name: aquarium-sprite
+            name: sprite
             port:
               number: 4001
       - path: /tetra/v1
         pathType: Prefix
         backend:
           service:
-            name: aquarium-tetra
+            name: tetra
             port:
               number: 4002
       - path: /puffer/v1
         pathType: Prefix
         backend:
           service:
-            name: aquarium-puffer
+            name: puffer
             port:
               number: 4003
       - path: /butterfly/v1
         pathType: Prefix
         backend:
           service:
-            name: aquarium-butterfly
+            name: butterfly
             port:
               number: 4004
       - path: /
         pathType: Prefix
         backend:
           service:
-            name: aquarium-tank
+            name: tank
             port:
               number: 3000

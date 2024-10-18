@@ -1,20 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: aquarium-butterfly
+  name: butterfly
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: aquarium-butterfly
+      app: butterfly
   template:
     metadata:
       labels:
-        app: aquarium-butterfly
+        app: butterfly
         logging: enabled
     spec:
       containers:
-        - name: aquarium-butterfly
+        - name: butterfly
           image: ghcr.io/konstfish/aquarium_butterfly:latest
           imagePullPolicy: Always
           env:

@@ -1,29 +1,29 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: aquarium-puffer
+  name: puffer
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: aquarium-puffer
+      app: puffer
   template:
     metadata:
       labels:
-        app: aquarium-puffer
+        app: puffer
         logging: enabled
     spec:
       containers:
-        - name: aquarium-puffer
+        - name: puffer
           image: ghcr.io/konstfish/aquarium_puffer:latest
           imagePullPolicy: Always
           env:
             - name: REDIS_URI
               value: "redis://redis:6379/0"
             - name: TETRA_URL
-              value: http://aquarium-tetra:4002/tetra/v1/echo
+              value: http://tetra:4002/tetra/v1/echo
             - name: BUTTERFLY_URL
-              value: http://aquarium-butterfly:4004/butterfly/v1/error
+              value: http://butterfly:4004/butterfly/v1/error
             - name: OTEL_EXPORTER_OTLP_ENDPOINT
               value: "otel-collector-headless:4318"
           ports:

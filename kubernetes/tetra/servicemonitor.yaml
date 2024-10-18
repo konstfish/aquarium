@@ -1,13 +1,13 @@
 apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
-  name: aquarium-tetra
+  name: tetra
   labels:
-    app: aquarium-tetra
+    app: tetra
 spec:
   selector:
     matchLabels:
-      app: aquarium-tetra
+      app: tetra
   endpoints:
   - port: http
     interval: 30s

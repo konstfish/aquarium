@@ -1,20 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: aquarium-tank
+  name: tank
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: aquarium-tank
+      app: tank
   template:
     metadata:
       labels:
-        app: aquarium-tank
+        app: tank
         logging: enabled
     spec:
       containers:
-        - name: aquarium-tank
+        - name: tank
           image: ghcr.io/konstfish/aquarium_tank:latest
           imagePullPolicy: Always
           ports:

@@ -1,12 +1,12 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: aquarium-puffer
+  name: puffer
   labels:
-    app: aquarium-puffer
+    app: puffer
 spec:
   selector:
-    app: aquarium-puffer
+    app: puffer
   ports:
     - protocol: TCP
       name: http

@@ -1,20 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: aquarium-tetra
+  name: tetra
 spec:
   replicas: 3
   selector:
     matchLabels:
-      app: aquarium-tetra
+      app: tetra
   template:
     metadata:
       labels:
-        app: aquarium-tetra
+        app: tetra
         logging: enabled
     spec:
       containers:
-        - name: aquarium-tetra
+        - name: tetra
           image: ghcr.io/konstfish/aquarium_tetra:latest
           imagePullPolicy: Always
           env:

@@ -1,20 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: aquarium-starfish
+  name: starfish
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: aquarium-starfish
+      app: starfish
   template:
     metadata:
       labels:
-        app: aquarium-starfish
+        app: starfish
         logging: enabled
     spec:
       containers:
-        - name: aquarium-starfish
+        - name: starfish
           image: ghcr.io/konstfish/aquarium_starfish:latest
           imagePullPolicy: Always
           env:
