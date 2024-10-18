@@ -3,6 +3,7 @@ package mappings
 import (
 	"github.com/gin-gonic/gin"
 	"github.com/konstfish/aquarium/butterfly/controllers"
+	"github.com/konstfish/aquarium/common/logging"
 	"github.com/konstfish/aquarium/common/monitoring"
 	"github.com/penglongli/gin-metrics/ginmetrics"
 	"go.opentelemetry.io/contrib/instrumentation/github.com/gin-gonic/gin/otelgin"
@@ -11,7 +12,11 @@ import (
 var Router *gin.Engine
 
 func CreateUrlMappings() {
-	Router = gin.Default()
+	Router = gin.New()
+	Router.Use(gin.Recovery())
+
+	// logging
+	Router.Use(logging.CustomLogger())
 
 	// opentelemetry
 	Router.Use(otelgin.Middleware(monitoring.ServiceName, otelgin.WithFilter(monitoring.FilterTraces)))

@@ -11,6 +11,7 @@ spec:
     metadata:
       labels:
         app: aquarium-puffer
+        logging: enabled
     spec:
       containers:
         - name: aquarium-puffer

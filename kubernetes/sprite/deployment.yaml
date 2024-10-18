@@ -11,6 +11,7 @@ spec:
     metadata:
       labels:
         app: aquarium-sprite
+        logging: enabled
     spec:
       containers:
         - name: aquarium-sprite

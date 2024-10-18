@@ -33,4 +33,4 @@ jobs:
       - name: Build
         if: ${{ steps.check-changes.outputs.changed == 'true' }}
         run: |
-          docker-compose --file docker-compose.build.yaml build ${{ matrix.component }}
+          docker compose --file docker-compose.build.yaml build ${{ matrix.component }}

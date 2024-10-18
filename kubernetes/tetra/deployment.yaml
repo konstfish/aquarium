@@ -11,6 +11,7 @@ spec:
     metadata:
       labels:
         app: aquarium-tetra
+        logging: enabled
     spec:
       containers:
         - name: aquarium-tetra
