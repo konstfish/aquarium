@@ -15,11 +15,11 @@ func CreateUrlMappings() {
 	Router = gin.New()
 	Router.Use(gin.Recovery())
 
-	// logging
-	Router.Use(logging.CustomLogger())
-
 	// opentelemetry
 	Router.Use(otelgin.Middleware(monitoring.ServiceName, otelgin.WithFilter(monitoring.FilterTraces)))
+
+	// logging, needs to be after otel middleware to make sure we have a trace id in the context
+	Router.Use(logging.CustomLogger())
 
 	// metrics
 	m := ginmetrics.GetMonitor()
