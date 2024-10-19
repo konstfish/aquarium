@@ -3,9 +3,9 @@ package db
 import (
 	"context"
 	"encoding/json"
-	"log"
 
 	"github.com/konstfish/aquarium/common/config"
+	"github.com/konstfish/aquarium/common/logging"
 	"github.com/konstfish/aquarium/common/monitoring"
 	"github.com/redis/go-redis/extra/redisotel/v9"
 	"github.com/redis/go-redis/v9"
@@ -56,7 +56,7 @@ func ConnectRedis() *RedisClient {
 	rdb := redis.NewClient(opt)
 
 	if err := redisotel.InstrumentTracing(rdb); err != nil {
-		log.Println(err)
+		logging.Error(context.TODO(), err.Error())
 	}
 
 	return &RedisClient{
@@ -66,7 +66,7 @@ func ConnectRedis() *RedisClient {
 }
 
 func (r *RedisClient) ListenForNewItems(queueName string, handler func(ctx context.Context, msg string)) {
-	log.Println("Listening for new items in queue", queueName)
+	logging.Info(r.Ctx, "Listening for new items in queue", queueName)
 
 	for {
 		var ctx context.Context
@@ -77,14 +77,14 @@ func (r *RedisClient) ListenForNewItems(queueName string, handler func(ctx conte
 		// pop item from queue
 		result, err := r.Client.BLPop(ctx, 0, queueName).Result()
 		if err != nil {
-			log.Println(err)
+			logging.Error(ctx, err.Error())
 		}
 
 		// deserialize queue item
 		var queueItem RedisQueueItem
 		err = queueItem.Deserialize(result[1])
 		if err != nil {
-			log.Println(err)
+			logging.Error(ctx, err.Error())
 		}
 
 		// create span
@@ -111,7 +111,7 @@ func (r *RedisClient) ListenForNewItems(queueName string, handler func(ctx conte
 }
 
 func (r *RedisClient) PushToQueue(ctx context.Context, queueName string, value string) {
-	log.Printf("Pushing %s to queue %s", value, queueName)
+	logging.Info(ctx, "Pushing item to queue", queueName)
 
 	var traceparent = monitoring.EmptyTraceparentHeader()
 
@@ -142,7 +142,7 @@ func (r *RedisClient) PushToQueue(ctx context.Context, queueName string, value s
 	// serialize queue item
 	err, item := queueItem.Serialize()
 	if err != nil {
-		log.Println(err)
+		logging.Error(ctx, err.Error())
 	}
 
 	r.Client.RPush(ctx, queueName, item)

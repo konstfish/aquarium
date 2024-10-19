@@ -3,12 +3,12 @@ package controllers
 import (
 	"context"
 	"fmt"
-	"log"
 	"math/rand"
 	"os"
 	"time"
 
 	"github.com/konstfish/aquarium/common/db"
+	"github.com/konstfish/aquarium/common/logging"
 	"github.com/konstfish/aquarium/common/monitoring"
 	"go.opentelemetry.io/otel/trace"
 )
@@ -24,7 +24,7 @@ func GetSprite(ctx context.Context, spritePath string) string {
 
 	file, err := db.Redis.Client.Get(ctx, fmt.Sprintf("sprite-%s", spritePath)).Result()
 	if err != nil {
-		log.Println("cache miss")
+		logging.Info(ctx, "Cache miss for sprite", spritePath)
 		file, err := getSpriteFile(ctx, spritePath)
 		if err != nil {
 			return ":("

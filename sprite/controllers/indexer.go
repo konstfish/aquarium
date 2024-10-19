@@ -1,9 +1,11 @@
 package controllers
 
 import (
-	"log"
+	"context"
 	"os"
 	"path/filepath"
+
+	"github.com/konstfish/aquarium/common/logging"
 )
 
 var Sprites map[string][]string
@@ -15,7 +17,8 @@ func InitSprites(rootDir string) {
 func GetSprites(rootDir string) map[string][]string {
 	parentFolders, err := os.ReadDir(rootDir)
 	if err != nil {
-		log.Fatal(err)
+		logging.Error(context.TODO(), "Failed to read directory", err.Error())
+		os.Exit(1)
 	}
 
 	var folders map[string][]string = make(map[string][]string)
@@ -26,7 +29,8 @@ func GetSprites(rootDir string) map[string][]string {
 
 			files, err := os.ReadDir(folderPath)
 			if err != nil {
-				log.Fatal(err)
+				logging.Error(context.TODO(), err.Error())
+				os.Exit(1)
 			}
 
 			for _, file := range files {

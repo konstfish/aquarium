@@ -5,7 +5,6 @@ import (
 	"time"
 
 	"github.com/gin-gonic/gin"
-	"go.opentelemetry.io/otel/trace"
 )
 
 func CustomLogger() gin.HandlerFunc {
@@ -16,8 +15,7 @@ func CustomLogger() gin.HandlerFunc {
 
 		c.Next()
 
-		span := trace.SpanFromContext(c.Request.Context())
-		traceID := span.SpanContext().TraceID().String()
+		traceID := extractTrace(c.Request.Context())
 
 		end := time.Now()
 		latency := end.Sub(start)
@@ -31,15 +29,14 @@ func CustomLogger() gin.HandlerFunc {
 			path = path + "?" + raw
 		}
 
-		// Log using the custom format with trace ID
-		fmt.Printf("[GIN] %v | %3d | %13v | %15s | %-7s %s | TraceID: %s\n%s",
+		fmt.Printf("[GIN] %v | %3d | %13v | %15s | TraceID: %s | %-7s %s\n%s",
 			end.Format("2006/01/02 - 15:04:05"),
 			statusCode,
 			latency,
 			clientIP,
+			traceID,
 			method,
 			path,
-			traceID,
 			errorMessage,
 		)
 	}

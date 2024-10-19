@@ -3,13 +3,13 @@ package monitoring
 import (
 	"context"
 	"fmt"
-	"log"
 	"net/http"
 	"slices"
 	"strconv"
 	"strings"
 
 	"github.com/konstfish/aquarium/common/config"
+	"github.com/konstfish/aquarium/common/logging"
 	"go.opentelemetry.io/otel"
 	"go.opentelemetry.io/otel/exporters/otlp/otlptrace/otlptracehttp"
 	"go.opentelemetry.io/otel/propagation"
@@ -36,8 +36,9 @@ func InitTracer(service string) {
 		otlptracehttp.WithEndpoint(config.GetConfigVar("OTEL_EXPORTER_OTLP_ENDPOINT")),
 		otlptracehttp.WithInsecure(),
 	)
+
 	if err != nil {
-		log.Fatalf("failed to create exporter: %v", err)
+		logging.Error(ctx, "failed to create exporter: ", err.Error())
 	}
 
 	tp := sdktrace.NewTracerProvider(
@@ -52,7 +53,7 @@ func InitTracer(service string) {
 
 	otel.SetTextMapPropagator(propagation.NewCompositeTextMapPropagator(propagation.TraceContext{}, propagation.Baggage{}))
 
-	log.Println("Tracing initialized")
+	logging.Info(ctx, "Tracing initialized")
 }
 
 func ExtractTraceparentHeader(ctx context.Context) string {
